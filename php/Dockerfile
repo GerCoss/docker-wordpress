@@ -35,10 +35,10 @@ RUN echo "server {\n\
             fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;\n\
         }\n\
     } " >> /etc/nginx/sites-available/default
-RUN echo "<?php phpinfo(); ?>" >> /var/www/html/info.php
+# RUN echo "<?php phpinfo(); ?>" >> /var/www/html/info.php
 
 EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-CMD service nginx start && service php7.3-fpm start 
+CMD service php7.3-fpm start && nginx -g "daemon off;" 
